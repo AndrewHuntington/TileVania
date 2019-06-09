@@ -5,14 +5,21 @@ using UnityStandardAssets.CrossPlatformInput; // Needed to access CrossPlatformI
 
 public class Player : MonoBehaviour {
 
+    // Config
     [SerializeField] float runSpeed = 5f; // Modifies run speed by being multiplied to controlThrow
 
+    // State
+    bool isAlive = true;
+
+    // Cached component references
     Rigidbody2D myRigidBody; // Needed to control the player sprite
+    Animator myAnimator; // Needed to control animation states
     
 
-	// Use this for initialization
+	// Message then methods
 	void Start () {
         myRigidBody = GetComponent<Rigidbody2D>();
+        myAnimator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -29,6 +36,10 @@ public class Player : MonoBehaviour {
         float controlThrow = CrossPlatformInputManager.GetAxis("Horizontal"); // value is between -1 and +1
         Vector2 playerVelocity = new Vector2(controlThrow * runSpeed, myRigidBody.velocity.y);
         myRigidBody.velocity = playerVelocity;
+
+        // playerHasHorizontalSpeed checks if the player is moving
+        bool playerHasHorizontalSpeed = Mathf.Abs(myRigidBody.velocity.x) > Mathf.Epsilon; // Mathf.Epsilon is a stand in for 0
+        myAnimator.SetBool("Running", playerHasHorizontalSpeed); // accesses the Running value in Paramters; playerHasHorizontalSpeed acts as on/off switch     
     }
 
 
