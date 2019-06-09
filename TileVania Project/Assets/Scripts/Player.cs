@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput; // Needed to access CrossPlatformInputManager
+// May need to import Standard Assests from Assest Store in order to acess CrossPlatformInput
+
 
 public class Player : MonoBehaviour {
 
     // Config
     [SerializeField] float runSpeed = 5f; // Modifies run speed by being multiplied to controlThrow
     [SerializeField] float jumpSpeed = 5f; // Used in conjunction w/Edit > Project Settings > Physics 2D > Gravity (y value) to control jump feel
+    [SerializeField] float climbSpeed = 5f;
 
     // State
     bool isAlive = true;
@@ -15,18 +18,21 @@ public class Player : MonoBehaviour {
     // Cached component references
     Rigidbody2D myRigidBody; // Needed to control the player sprite
     Animator myAnimator; // Needed to control animation states
+    Collider2D myCollider;
     
 
 	// Message then methods
 	void Start () {
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
+        myCollider = GetComponent<Collider2D>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
         Run();
         Jump();
+        ClimbLadder();
         FlipSprite();
     }
 
@@ -46,11 +52,26 @@ public class Player : MonoBehaviour {
 
     private void Jump()
     {
+        if(!myCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; } //prevents mid-air jumping
+
         if (CrossPlatformInputManager.GetButtonDown("Jump"))
         {
             Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
             myRigidBody.velocity += jumpVelocityToAdd;
         }
+    }
+
+    private void ClimbLadder()
+    {
+        if(!myCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"))) { return;  }
+
+        float controlThrow = CrossPlatformInputManager.GetAxis("Vertical");
+        Vector2 climbVelocity = new Vector2(myRigidBody.velocity.x, controlThrow * climbSpeed);
+        myRigidBody.velocity = climbVelocity;
+
+        bool playerHasVerticalSpeed = Mathf.Abs(myRigidBody.velocity.y) > Mathf.Epsilon;
+        myAnimator.SetBool("Climbing", playerHasVerticalSpeed);
+
     }
 
 
