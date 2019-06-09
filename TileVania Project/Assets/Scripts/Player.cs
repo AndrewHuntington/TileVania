@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
 
     // Config
     [SerializeField] float runSpeed = 5f; // Modifies run speed by being multiplied to controlThrow
+    [SerializeField] float jumpSpeed = 5f; // Used in conjunction w/Edit > Project Settings > Physics 2D > Gravity (y value) to control jump feel
 
     // State
     bool isAlive = true;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Run();
+        Jump();
         FlipSprite();
     }
 
@@ -40,6 +42,15 @@ public class Player : MonoBehaviour {
         // playerHasHorizontalSpeed checks if the player is moving
         bool playerHasHorizontalSpeed = Mathf.Abs(myRigidBody.velocity.x) > Mathf.Epsilon; // Mathf.Epsilon is a stand in for 0
         myAnimator.SetBool("Running", playerHasHorizontalSpeed); // accesses the Running value in Paramters; playerHasHorizontalSpeed acts as on/off switch     
+    }
+
+    private void Jump()
+    {
+        if (CrossPlatformInputManager.GetButtonDown("Jump"))
+        {
+            Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
+            myRigidBody.velocity += jumpVelocityToAdd;
+        }
     }
 
 
