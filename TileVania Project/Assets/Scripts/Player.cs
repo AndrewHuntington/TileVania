@@ -19,6 +19,7 @@ public class Player : MonoBehaviour {
     Rigidbody2D myRigidBody; // Needed to control the player sprite
     Animator myAnimator; // Needed to control animation states
     Collider2D myCollider;
+    float gravityScaleAtStart;
     
 
 	// Message then methods
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour {
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         myCollider = GetComponent<Collider2D>();
+        gravityScaleAtStart = myRigidBody.gravityScale;
 	}
 	
 	// Update is called once per frame
@@ -63,11 +65,17 @@ public class Player : MonoBehaviour {
 
     private void ClimbLadder()
     {
-        if(!myCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"))) { return;  }
+        if(!myCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        {
+            myRigidBody.gravityScale = gravityScaleAtStart;
+            myAnimator.SetBool("Climbing", false);
+            return;
+        }
 
         float controlThrow = CrossPlatformInputManager.GetAxis("Vertical");
         Vector2 climbVelocity = new Vector2(myRigidBody.velocity.x, controlThrow * climbSpeed);
         myRigidBody.velocity = climbVelocity;
+        myRigidBody.gravityScale = 0f;
 
         bool playerHasVerticalSpeed = Mathf.Abs(myRigidBody.velocity.y) > Mathf.Epsilon;
         myAnimator.SetBool("Climbing", playerHasVerticalSpeed);
