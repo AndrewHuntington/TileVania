@@ -18,7 +18,8 @@ public class Player : MonoBehaviour {
     // Cached component references
     Rigidbody2D myRigidBody; // Needed to control the player sprite
     Animator myAnimator; // Needed to control animation states
-    Collider2D myCollider;
+    CapsuleCollider2D myBodyCollider;
+    BoxCollider2D myFeet;
     float gravityScaleAtStart;
     
 
@@ -26,7 +27,8 @@ public class Player : MonoBehaviour {
 	void Start () {
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
-        myCollider = GetComponent<Collider2D>();
+        myBodyCollider = GetComponent<CapsuleCollider2D>();
+        myFeet = GetComponent<BoxCollider2D>();
         gravityScaleAtStart = myRigidBody.gravityScale;
 	}
 	
@@ -54,18 +56,19 @@ public class Player : MonoBehaviour {
 
     private void Jump()
     {
-        if(!myCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; } //prevents mid-air jumping
+        if(!myFeet.IsTouchingLayers(LayerMask.GetMask("Ground"))) { return; } //prevents mid-air jumping
 
         if (CrossPlatformInputManager.GetButtonDown("Jump"))
         {
             Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
             myRigidBody.velocity += jumpVelocityToAdd;
         }
+        
     }
 
     private void ClimbLadder()
     {
-        if(!myCollider.IsTouchingLayers(LayerMask.GetMask("Climbing")))
+        if(!myFeet.IsTouchingLayers(LayerMask.GetMask("Climbing")))
         {
             myRigidBody.gravityScale = gravityScaleAtStart;
             myAnimator.SetBool("Climbing", false);
