@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 95323592021618398}
   - component: {fileID: 50007468336229642}
   - component: {fileID: 70448097553170710}
-  - component: {fileID: 114056968547130558}
   - component: {fileID: 61202444599345956}
+  - component: {fileID: 114056968547130558}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1700933437158188}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.46, y: 3.03, z: 0}
+  m_LocalPosition: {x: -14.31, y: -2.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -168,7 +168,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1774114561
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300010, guid: e8067455b40b7ef46ab14243038d347f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
