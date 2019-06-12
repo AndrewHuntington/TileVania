@@ -34,10 +34,14 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (!isAlive) { return; } // stops player from moving after death
+
         Run();
         Jump();
         ClimbLadder();
         FlipSprite();
+        Die();
+        
     }
 
     // Controls movement along the X axis
@@ -97,6 +101,15 @@ public class Player : MonoBehaviour {
         {
             //transform.localScale = new Vector2(x,y)  -- allows you access to the X and Y values of Transform > Scale
             transform.localScale = new Vector2(Mathf.Sign(myRigidBody.velocity.x), 1f);
+        }
+    }
+
+    private void Die()
+    {
+        if (myBodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        {
+            isAlive = false;
+            myAnimator.SetTrigger("Death");
         }
     }
 }
