@@ -42,4 +42,18 @@ public class EnemyMovement : MonoBehaviour {
         transform.localScale = new Vector2(-(Mathf.Sign(myRigidBody.velocity.x)), 1f);       
     }
 
+    //want to have enemy move in the opposite direction after colliding w/Player
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Player"))
+        {
+            return;
+        }
+        else
+        {
+            transform.localScale = new Vector2(-(Mathf.Sign(myRigidBody.velocity.x)), 1f); ;
+        }
+
+    }
+
 }
