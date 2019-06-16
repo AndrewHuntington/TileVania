@@ -5,8 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour {
 
+    //  public so it can be accessed by the button
 	public void StartFirstLevel()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
