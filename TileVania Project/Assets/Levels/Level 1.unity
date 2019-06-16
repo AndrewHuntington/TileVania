@@ -646,6 +646,66 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1001 &1115537146
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4105158060475826, guid: 66c71d7b50fcc8043a80daa2d2c52de5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 66.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105158060475826, guid: 66c71d7b50fcc8043a80daa2d2c52de5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -6.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105158060475826, guid: 66c71d7b50fcc8043a80daa2d2c52de5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105158060475826, guid: 66c71d7b50fcc8043a80daa2d2c52de5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105158060475826, guid: 66c71d7b50fcc8043a80daa2d2c52de5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105158060475826, guid: 66c71d7b50fcc8043a80daa2d2c52de5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105158060475826, guid: 66c71d7b50fcc8043a80daa2d2c52de5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105158060475826, guid: 66c71d7b50fcc8043a80daa2d2c52de5, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105158060475826, guid: 66c71d7b50fcc8043a80daa2d2c52de5, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4105158060475826, guid: 66c71d7b50fcc8043a80daa2d2c52de5, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 212708874208668042, guid: 66c71d7b50fcc8043a80daa2d2c52de5,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212708874208668042, guid: 66c71d7b50fcc8043a80daa2d2c52de5,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 66c71d7b50fcc8043a80daa2d2c52de5, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1298497339
 Prefab:
   m_ObjectHideFlags: 0
@@ -787,7 +847,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 927549035
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_MaxChunkCount: 16
