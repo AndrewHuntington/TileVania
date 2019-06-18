@@ -30,14 +30,14 @@ public class GameSession : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        livesText.text = playerLives.ToString();
-        scoreText.text = score.ToString();
+        livesText.text = "Lives: \n" + playerLives.ToString();
+        scoreText.text = "Score: \n" + score.ToString();
 	}
 
     public void AddToScore(int pointsToAdd)
     {
         score += pointsToAdd;
-        scoreText.text = score.ToString();
+        scoreText.text = "Score: \n" + score.ToString();
     }
 	
     public void ProcessPlayerDeath()
@@ -62,7 +62,7 @@ public class GameSession : MonoBehaviour {
     private void TakeLife()
     {
         playerLives--;
-        livesText.text = playerLives.ToString();
+        livesText.text = "Lives: \n" + playerLives.ToString();
     }
 
     private void ResetGameSession()

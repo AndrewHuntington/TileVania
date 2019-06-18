@@ -20,6 +20,7 @@ public class LevelExit : MonoBehaviour {
         Time.timeScale = 1f;
 
         var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        Destroy(FindObjectOfType<ScenePersist>()); // stops problem w/coins not loading between levels
         SceneManager.LoadScene(currentSceneIndex + 1);
             
     }
